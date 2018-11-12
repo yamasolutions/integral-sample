@@ -7,6 +7,11 @@
   "scripts": {
     "postdeploy": "scripts/post_deploy.sh"
   },
+  "env": {
+    "HEROKU_APP_NAME": {
+      "required": true
+    }
+  },
   "addons": [
     "autobus",
     "papertrail",
