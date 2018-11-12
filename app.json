@@ -7,9 +7,6 @@
   "scripts": {
     "postdeploy": "scripts/post_deploy.sh"
   },
-  "env": {
-    }
-  },
   "addons": [
     "autobus",
     "papertrail",
