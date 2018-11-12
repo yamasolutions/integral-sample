@@ -1,0 +1,41 @@
+{
+  "name": "Integral CMS Sample App",
+  "description": "Sample Ruby on Rails application for Integral CMS used to easily deploy to Heroku",
+  "repository": "https://github.com/yamasolutions/integral-sample",
+  "keywords": ["Ruby on Rails", "Integral CMS", "Content Management System", "Rails 5"],
+  "scripts": {
+    "postdeploy": "scripts/post_deploy.sh"
+  },
+  "env": {
+    "LANG": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    }
+  },
+  "addons": [
+    "autobus",
+    "papertrail",
+    "logentries",
+    "heroku-postgresql",
+    "scheduler"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "https://github.com/gronda-team/image-optimizers-buildpack"
+    }
+  ]
+}
