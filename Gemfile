@@ -27,9 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# gem 'integral' # Ruby on Rails 5+ CMS
+gem 'integral' # Ruby on Rails 5+ CMS
 # gem 'integral', path: '../integral'
-gem 'integral', git: 'git://github.com/yamasolutions/integral.git'
+# gem 'integral', git: 'git://github.com/yamasolutions/integral.git'
 # gem 'integral', git: 'git://github.com/yamasolutions/integral.git', branch: 'branch'
 
 # Use ActiveStorage variant
