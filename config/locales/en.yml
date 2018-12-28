@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  simple_form:
+    hints:
+      page:
+        custom_url: A useful hint for custom URL
+    labels:
+      page:
+        custom_url: My Custom URL

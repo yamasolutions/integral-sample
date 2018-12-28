@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_210276) do
+ActiveRecord::Schema.define(version: 2018_12_28_032320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.integer "parent_id"
     t.integer "image_id"
     t.integer "lock_version"
+    t.string "custom_url"
     t.index ["deleted_at"], name: "index_integral_pages_on_deleted_at"
     t.index ["image_id"], name: "index_integral_pages_on_image_id"
   end

@@ -33,7 +33,7 @@ Integral.configure do |config|
   # Set additional backend permitted page params
   # Default is []
   #
-  # config.additional_page_params = [:additional_awesome_page_attribute]
+  config.additional_page_params = [:custom_url]
 
   # Set additional backend permitted post params
   # Default is []
