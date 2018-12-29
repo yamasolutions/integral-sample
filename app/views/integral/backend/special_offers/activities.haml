@@ -1,0 +1,3 @@
+- content_for :title, t('.title', title: @resource.title)
+
+= render partial: 'integral/backend/activities/shared/listing', locals: { form_url: activities_backend_special_offer_url(@resource.id) }

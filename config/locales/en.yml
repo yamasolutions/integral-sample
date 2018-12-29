@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+
+  integral:
+    navigation:
+      special_offers: Special Offers
+    backend:
+      special_offers:
+        index:
+          title: Special Offers
+        new:
+          title: New Special Offer
+        edit:
+          title: "Editing: %{name}"
+

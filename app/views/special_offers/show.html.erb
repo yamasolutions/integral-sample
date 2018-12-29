@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @special_offer.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @special_offer.description %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @special_offer.discount %>
+</p>
+
+<%= link_to 'Edit', edit_special_offer_path(@special_offer) %> |
+<%= link_to 'Back', special_offers_path %>
