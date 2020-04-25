@@ -1,3 +1,4 @@
+# Load Integral seedings
 Integral::Engine.load_seed
 
 # Override the default call to action button
