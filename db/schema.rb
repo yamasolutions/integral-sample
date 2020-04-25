@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_210276) do
+ActiveRecord::Schema.define(version: 2020_04_24_234008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,27 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "integral_categories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "image_id"
+    t.index ["image_id"], name: "index_integral_categories_on_image_id"
+  end
+
+  create_table "integral_category_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "object_changes"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_integral_category_versions_on_item_type_and_item_id"
   end
 
   create_table "integral_enquiries", id: :serial, force: :cascade do |t|
@@ -201,6 +222,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.integer "image_id"
     t.integer "lock_version"
     t.integer "preview_image_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_integral_posts_on_category_id"
     t.index ["deleted_at"], name: "index_integral_posts_on_deleted_at"
     t.index ["image_id"], name: "index_integral_posts_on_image_id"
     t.index ["preview_image_id"], name: "index_integral_posts_on_preview_image_id"
@@ -268,6 +291,14 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.index ["reset_password_token"], name: "index_integral_users_on_reset_password_token", unique: true
   end
 
+  create_table "integral_webhook_endpoints", force: :cascade do |t|
+    t.string "target_url", null: false
+    t.string "events", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["events"], name: "index_integral_webhook_endpoints_on_events"
+  end
+
   create_table "settings", id: :serial, force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
@@ -278,6 +309,28 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
+  create_table "special_offer_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "object_changes"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_special_offer_versions_on_item_type_and_item_id"
+  end
+
+  create_table "special_offers", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.text "body"
+    t.integer "discount"
+    t.integer "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_special_offers_on_image_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -286,8 +339,15 @@ ActiveRecord::Schema.define(version: 2018_11_12_210276) do
     t.integer "tagger_id"
     t.string "context", limit: 128
     t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
     t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
   create_table "tags", id: :serial, force: :cascade do |t|
