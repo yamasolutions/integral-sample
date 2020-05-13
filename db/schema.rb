@@ -333,28 +333,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_205357) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
-  create_table "special_offer_versions", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.text "object"
-    t.text "object_changes"
-    t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_special_offer_versions_on_item_type_and_item_id"
-  end
-
-  create_table "special_offers", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.text "body"
-    t.integer "discount"
-    t.integer "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["image_id"], name: "index_special_offers_on_image_id"
-  end
-
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
