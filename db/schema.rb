@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_032320) do
+ActiveRecord::Schema.define(version: 2020_05_12_205357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,27 @@ ActiveRecord::Schema.define(version: 2018_12_28_032320) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "integral_categories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "image_id"
+    t.index ["image_id"], name: "index_integral_categories_on_image_id"
+  end
+
+  create_table "integral_category_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "object_changes"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_integral_category_versions_on_item_type_and_item_id"
   end
 
   create_table "integral_enquiries", id: :serial, force: :cascade do |t|
@@ -139,6 +160,28 @@ ActiveRecord::Schema.define(version: 2018_12_28_032320) do
     t.boolean "processed", default: false
   end
 
+  create_table "integral_notification_subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "state"
+    t.string "subscribable_type"
+    t.bigint "subscribable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscribable_type", "subscribable_id"], name: "index_integral_subscriptions_on_subscribable_type_id"
+  end
+
+  create_table "integral_notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.string "subscribable_type"
+    t.bigint "subscribable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscribable_type", "subscribable_id"], name: "index_integral_notifications_on_subscribable_type_id"
+  end
+
   create_table "integral_page_versions", id: :serial, force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -202,6 +245,8 @@ ActiveRecord::Schema.define(version: 2018_12_28_032320) do
     t.integer "image_id"
     t.integer "lock_version"
     t.integer "preview_image_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_integral_posts_on_category_id"
     t.index ["deleted_at"], name: "index_integral_posts_on_deleted_at"
     t.index ["image_id"], name: "index_integral_posts_on_image_id"
     t.index ["preview_image_id"], name: "index_integral_posts_on_preview_image_id"
@@ -261,12 +306,22 @@ ActiveRecord::Schema.define(version: 2018_12_28_032320) do
     t.boolean "avatar_processing", default: true, null: false
     t.integer "lock_version"
     t.boolean "admin", default: false
+    t.boolean "notify_me", default: true
+    t.integer "status", default: 0
     t.index ["deleted_at"], name: "index_integral_users_on_deleted_at"
     t.index ["email"], name: "index_integral_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_integral_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_integral_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_integral_users_on_invited_by_id"
     t.index ["reset_password_token"], name: "index_integral_users_on_reset_password_token", unique: true
+  end
+
+  create_table "integral_webhook_endpoints", force: :cascade do |t|
+    t.string "target_url", null: false
+    t.string "events", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["events"], name: "index_integral_webhook_endpoints_on_events"
   end
 
   create_table "settings", id: :serial, force: :cascade do |t|
