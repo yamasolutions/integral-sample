@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # Extend Integral engine routes
   Integral::Engine.routes.draw do
     namespace :backend, path: Integral.backend_namespace do
-      resources :special_offers, except: [ :show ] do
+      resources :special_offers do
+        get 'list', on: :collection
         member do
           get 'activities', controller: 'special_offers', as: :activities
           get 'activities/:activity_id', to: 'special_offers#activity', as: :activity

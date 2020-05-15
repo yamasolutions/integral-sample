@@ -42,5 +42,5 @@ en:
         new:
           title: New Special Offer
         edit:
-          title: "Editing: %{name}"
+          title: "Editing: %{title}"
 
