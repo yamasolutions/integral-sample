@@ -75,7 +75,7 @@ Integral.configure do |config|
   # Toggle production compression (HTML, JS, Gzip, minification, etc)
   # Default is true
   #
-  # config.compression_enabled = false
+  config.compression_enabled = false
 
   # Configure the maximum dimensions of images uploaded through CKeditor
   # Default is [1600, 1600]
