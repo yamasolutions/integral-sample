@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/yamasolutions/integral.git
-  revision: d5ce17d0e919f82932804760d23463f1c2cb6fb5
+  revision: cafeef60222d955858d4eb0d4f299e5555352a7f
   branch: block_editor
   specs:
     integral (1.4.0)
