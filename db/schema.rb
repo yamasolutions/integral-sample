@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_205357) do
+ActiveRecord::Schema.define(version: 2020_04_24_234008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,28 +160,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_205357) do
     t.boolean "processed", default: false
   end
 
-  create_table "integral_notification_subscriptions", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "state"
-    t.string "subscribable_type"
-    t.bigint "subscribable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscribable_type", "subscribable_id"], name: "index_integral_subscriptions_on_subscribable_type_id"
-  end
-
-  create_table "integral_notifications", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "actor_id"
-    t.datetime "read_at"
-    t.string "action"
-    t.string "subscribable_type"
-    t.bigint "subscribable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscribable_type", "subscribable_id"], name: "index_integral_notifications_on_subscribable_type_id"
-  end
-
   create_table "integral_page_versions", id: :serial, force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -305,8 +283,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_205357) do
     t.boolean "avatar_processing", default: true, null: false
     t.integer "lock_version"
     t.boolean "admin", default: false
-    t.boolean "notify_me", default: true
-    t.integer "status", default: 0
     t.index ["deleted_at"], name: "index_integral_users_on_deleted_at"
     t.index ["email"], name: "index_integral_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_integral_users_on_invitation_token", unique: true
