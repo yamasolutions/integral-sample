@@ -1,7 +1,7 @@
 # :nocov:
 CarrierWave.configure do |config|
   # Use AWS storage when in production, otherwise use file
-  config.storage = :file
+  config.storage = Rails.env.production? ? :aws : :file
 
   # Disable processing when testing
   config.enable_processing = !Rails.env.test?
@@ -10,7 +10,7 @@ CarrierWave.configure do |config|
   # This assumes you are using AWS for file storage in production (Recommended)
   #
   # Commment this line out and edit #4 when testing AWS locally
-  break # unless Rails.env.production?
+  break unless Rails.env.production?
 
   # The maximum period for authenticated_urls is only 7 days.
   config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
