@@ -2,7 +2,7 @@
 [![Current Build Status](https://img.shields.io/circleci/project/github/yamasolutions/integral/master.svg)][ci-website] [![Inline docs](http://inch-ci.org/github/yamasolutions/integral.svg?branch=master)][docs-website]
 # Integral CMS - Sample App
 
-**This is a sample Rails application for Integral. This sample is using Integral v1.4.0**
+**This is a sample Rails application for Integral. This sample is using Integral v1.5.1**
 
 Integral is a CMS for Rails 5+. The aim of Integral is to lower the barrier of entry in creating websites, using Ruby on Rails, with all the bells and whistles that users have now come to expect.
 Out of the box integral provides;
@@ -10,6 +10,7 @@ Out of the box integral provides;
     * Professional design
     * User authentication & authorization
     * Page & Post management with full WYSWIYG editing
+    * User notifications
     * Image management (w/ background image processing)
     * List management
     * Settings management
@@ -17,6 +18,7 @@ Out of the box integral provides;
 * Frontend features
     * Dynamic Pages
     * Integrated Blog
+    * Multi-language
     * SEO Ready
     * Contact form processing w/ HTML emails
     * Sitemap generation
