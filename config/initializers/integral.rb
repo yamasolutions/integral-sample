@@ -20,6 +20,11 @@ Integral.configure do |config|
   #
   # config.backend_locales = [:en, :ja]
 
+  # Set the frontend locales available to visitors - adding more than one will enable multilingual mode
+  # Default is [:en]
+  #
+  # config.frontend_locales = [:en, :ja]
+
   # Set additional backend permitted setting params
   # Default is []
   #
@@ -60,11 +65,6 @@ Integral.configure do |config|
   # Default is []
   #
   # config.additional_page_templates = [:full_width]
-
-  # Add additional tracked classes to include within activity tracking
-  # Default is []
-  #
-  # config.additional_tracked_classes = [MyCustomClass]
 
   # Configure what page paths are protected from user entry to prevent accidentally overriding
   # config.black_listed_paths = [
