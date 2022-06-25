@@ -128,7 +128,7 @@ GEM
     devise_invitable (1.7.5)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
-    diffy (3.4.0)
+    diffy (3.4.2)
     draper (3.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
